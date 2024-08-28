@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ericsson.nms</groupId>
+        <artifactId>integration</artifactId>
+        <version>15.2.0.40</version>
+    </parent>
+
+    <groupId>com.ericsson.oss.itpf.security</groupId>
+    <artifactId>credentialmanager-testware</artifactId>
+    <version>1.0.5-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>[${project.artifactId}] Testare</name>
+
+    <modules>
+        <module>ERICTAFcredentialmanagertestware_CXP9041931</module>
+        <module>ERICTAFcredentialmanagertestware_operator</module>
+        <module>test-pom-credentialmanager-testware</module>
+    </modules>
+
+    <url>http://www.ericsson.com</url>
+    <organization>
+        <name>Ericsson</name>
+    </organization>
+
+    <properties>
+        <!-- Must be keep aligned with library version -->
+        <taf_version>2.76.1</taf_version><!-- WAS 2.63.2 -->
+        <enm-test-library-bom.version>1.2.146</enm-test-library-bom.version><!-- WAS 1.1.218 -->
+        <tdm-datasource.version>1.0.126</tdm-datasource.version><!-- WAS1.0.121 -->
+        <!-- Must be keep aligned with library version -->
+        <target.java.version>1.7</target.java.version>
+        <aspectj.version>1.8.3</aspectj.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <groovy.version>2.1.9</groovy.version>
+        <groovy-eclipse-compiler.version>2.9.0-01</groovy-eclipse-compiler.version>
+        <groovy-eclipse-batch.version>2.1.5-03</groovy-eclipse-batch.version>
+        <plexus-compiler-api.version>2.2</plexus-compiler-api.version>
+        <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
+    </properties>
+
+    <scm>
+        <connection>scm:git:ssh://gerrit.ericsson.se:29418/OSS/ENM-Parent/SQ-Gate/${project.groupId}/${project.artifactId}</connection>
+        <developerConnection>scm:git:ssh://gerrit.ericsson.se:29418/OSS/ENM-Parent/SQ-Gate/${project.groupId}/${project.artifactId}</developerConnection>
+        <tag>credentialmanager-testware-1.0.1</tag>
+    </scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ericsson.cifwk</groupId>
+                <artifactId>taf-bom</artifactId>
+                <version>${taf_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.ericsson.cifwk</groupId>
+                        <artifactId>taf-netsim</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.ericsson.cifwk</groupId>
+                        <artifactId>ossrc-topology</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.oss.testware.bom</groupId>
+                <artifactId>enm-test-library-bom</artifactId>
+                <version>${enm-test-library-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.ericsson.cifwk</groupId>
+                <artifactId>all-taf-sdk</artifactId>
+                <version>${taf_version}</version>
+                <type>pom</type>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.ericsson.cifwk</groupId>
+                        <artifactId>taf-jboss</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.ericsson.cifwk</groupId>
+                        <artifactId>ossrc-topology</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.ericsson.cifwk</groupId>
+                        <artifactId>taf-netsim</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.ericsson.cifwk.taf</groupId>
+                    <artifactId>taf-maven-plugin</artifactId>
+                    <version>${taf_version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.ericsson.cifwk.taf</groupId>
+                    <artifactId>taf-allure-old-maven-plugin</artifactId>
+                    <version>${taf_version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+<!--                 <version>2.16</version> -->
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.16</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.ericsson.cifwk.taf</groupId>
+                <artifactId>taf-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

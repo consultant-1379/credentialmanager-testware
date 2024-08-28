@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>credentialmanager-testware</artifactId>
+        <groupId>com.ericsson.oss.itpf.security</groupId>
+        <version>1.0.5-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ERICTAFcredentialmanagertestware_operator</artifactId>
+    <name>[${project.parent.artifactId}] Operator module</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.oss.testware.security</groupId>
+            <artifactId>login-operators</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.testware.taf</groupId>
+            <artifactId>enm-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.testware.taf</groupId>
+            <artifactId>host-configurator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.testware.enm.cli</groupId>
+            <artifactId>enm-cli-operator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.testware.security</groupId>
+            <artifactId>identity-management-rest-operators</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.de</groupId>
+            <artifactId>http-tool</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.cifwk</groupId>
+            <artifactId>all-taf-sdk</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+    </dependencies>
+</project>
